@@ -4,7 +4,7 @@ spring:
 build:
   version: 1.0
 cards:
-  message : "welcome to cards devl Microservice Application"
+  message : "welcome to cards dev Microservice Application"
   contactDetails:
     name: Saikat Sen
     email: saikatsenproject@gmail.com
