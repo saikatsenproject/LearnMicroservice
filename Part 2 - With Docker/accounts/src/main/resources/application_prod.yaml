@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: accounts
+  datasource:
+    url: jdbc:h2:mem:microServiceDB
+    username: saikat
+    password: saikat
+  jpa:
+    hibernate:
+      ddl-auto: update
+      show-sql: true
+  h2:
+    console:
+      enabled: true
+  config:
+    activate:
+      on-profile: prod
+
+build:
+  version: 1.2
+
+accounts:
+  message : "welcome to Prod Microservice Application"
+  contactDetails:
+    name: Saikat Sen
+    email: saikatsenproject@gmail.com
+  phNo:
+    - 1234567890
+    - 1234567897

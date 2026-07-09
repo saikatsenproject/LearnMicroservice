@@ -1,0 +1,19 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: loans
+  datasource:
+    url: jdbc:h2:mem:microServiceDB
+    username: saikat
+    password: saikat
+  jpa:
+    hibernate:
+      ddl-auto: update
+      show-sql: true
+  h2:
+    console:
+      enabled: true
+  config:
+    activate:
+      on-profile: dev
