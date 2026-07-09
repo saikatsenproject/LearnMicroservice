@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: accounts
+  datasource:
+    url: jdbc:h2:mem:microServiceDB
+    username: saikat
+    password: saikat
+  jpa:
+    hibernate:
+      ddl-auto: update
+      show-sql: true
+  h2:
+    console:
+      enabled: true
