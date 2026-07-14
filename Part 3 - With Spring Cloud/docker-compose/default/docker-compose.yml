@@ -1,0 +1,71 @@
+## This docker compose use to create how different microservice connect
+## with each other and run.Docker will create the container base on serial no.
+## But the diffeculties is it will throw an exception while create a ccounts,loans,
+## cards because it's directly depends on config server start.
+services:
+  rabbit:
+    image: "rabbitmq:4-management"
+    hostname: rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
+    healthcheck:
+      test: "rabbitmq-diagnostics check_port_connectivity"
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    extends:
+      file: common-config.yml
+      service: network-deploy-service
+  configserver:
+    image: "saikatsenproject/configserver:part3"
+    container_name: configserver-ms
+    ports:
+      - 8071:8071
+    healthcheck:
+      test: "curl --fail --silent localhost:8071/actuator/health/readiness | grep UP || exit 1"
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    depends_on:
+      rabbit:
+        condition: service_healthy
+    extends:
+      file: common-config.yml
+      service: microservice-base-config
+  accounts:
+    image: "saikatsenproject/accounts:part3"
+    container_name: accounts-ms
+    ports:
+      - 8081:8080
+    environment:
+      SPRING_APPLICATION_NAME: "accounts"
+    extends:
+      file: common-config.yml
+      service: microservice-configserver-config
+  cards:
+    image: "saikatsenproject/cards:part3"
+    container_name: cards-ms
+    ports:
+      - 8091:8090
+    environment:
+      SPRING_APPLICATION_NAME: "cards"
+    extends:
+      file: common-config.yml
+      service: microservice-configserver-config
+  loans:
+    image: "saikatsenproject/loans:part3"
+    container_name: loans-ms
+    ports:
+      - 9001:9000
+    environment:
+      SPRING_APPLICATION_NAME: "loans"
+    extends:
+      file: common-config.yml
+      service: microservice-configserver-config
+
+networks:
+  microservice:
+    driver: "bridge"
