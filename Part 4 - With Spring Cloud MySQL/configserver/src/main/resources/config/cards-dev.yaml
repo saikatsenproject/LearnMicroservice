@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: cards
+build:
+  version: 1.0
+cards:
+  message : "welcome to cards dev Microservice Application"
+  contactDetails:
+    name: Saikat Sen
+    email: saikatsenproject@gmail.com
+  phNo:
+    - 1234567890
+    - 1234567897

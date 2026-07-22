@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: accounts
+
+build:
+  version: 1.1
+
+accounts:
+  message : "welcome to Dev Microservice Application"
+  contactDetails:
+    name: Saikat Sen
+    email: saikatsenproject@gmail.com
+  phNo:
+    - 1234567890
+    - 1234567897

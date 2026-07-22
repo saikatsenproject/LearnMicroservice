@@ -1,0 +1,37 @@
+services:
+  accounts:
+    image: "saikatsenproject/accounts:part2"
+    container_name: accounts-ms
+    ports:
+      - 8081:8080
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - microservice
+  cards:
+    image: "saikatsenproject/cards:part2"
+    container_name: cards-ms
+    ports:
+      - 8091:8090
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - microservice
+  loans:
+    image: "saikatsenproject/loans:part2"
+    container_name: loans-ms
+    ports:
+      - 9001:9000
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - microservice
+networks:
+  microservice:
+    driver: "bridge"

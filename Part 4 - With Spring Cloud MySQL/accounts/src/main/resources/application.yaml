@@ -1,0 +1,38 @@
+## Please Note That any hardcoded value related to url will not work in docker compose environment like localhost
+spring:
+  application:
+    name: accounts
+  datasource:
+    url: jdbc:mysql://localhost:3308/accountsDB
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+      show-sql: true
+  h2:
+    console:
+      enabled: true
+  config:
+    import: "optional:configserver:http://localhost:8071/"
+  profiles:
+    active: dev
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+# Not Required because we use config server
+#build:
+#  version: 1.0
+#
+#accounts:
+#  message : "welcome to Microservice Application"
+#  contactDetails:
+#    name: Saikat Sen
+#    email: saikatsenproject@gmail.com
+#  phNo:
+#    - 1234567890
+#    - 1234567897

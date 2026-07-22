@@ -1,0 +1,23 @@
+-- This file is use as a readme file ,where we are written all the commands for docker
+-- and what are the steps we follow as per our development
+
+when we are deploy any java application it's better to use a jar/war as packaging in our pom.xml
+let's say for our accounts microservice we are using pom.xml - packaging as jar.
+
+-- Accounts Microservice Container --
+1) First delete the target folder classes and generated classes into it so that when
+we build with the help of maven we can form a jar into it, and run it in future.
+
+2) Go to Path : C:\Users\saika\Spring Boot Projects\Learn Microservice\Part 2 - With Docker\accounts -- where pom.xml present
+  Note that : a) If we are using java version 21 in pom.xml and in system we have java 20 then ,
+                 mvn command will not work when we build jar with the command --
+
+                 To Build a jar --
+                 mvn clean install
+
+                 To Run a jar --
+                 mvn spring-boot:run
+
+---- MYSQL Docker Image and Run ----
+1) docker run -p 3307:3306 --name accountsDB -e MYSQL_ROOT_USERNAME=root -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=accountsDB -d mysql
+2) Add Dependency Mysql-connector to respective service pom.xml,those services are request for storing the data into mysql db.
