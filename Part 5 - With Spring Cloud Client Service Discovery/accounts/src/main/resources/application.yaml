@@ -1,0 +1,56 @@
+spring:
+  application:
+    name: accounts
+  datasource:
+    url: jdbc:h2:mem:microServiceDB
+    username: saikat
+    password: saikat
+  jpa:
+    hibernate:
+      ddl-auto: update
+      show-sql: true
+  h2:
+    console:
+      enabled: true
+  config:
+    import: "optional:configserver:http://localhost:8071/"
+  profiles:
+    active: dev
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    shutdown:
+      access: unrestricted # since enabled:true is deprecated so replace with access
+  info:
+    env:
+      enabled: true
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    fetchRegistry: true # since it's a client need to store the data in registry
+    registerWithEureka: true # Eureka client should be register with eureka server
+    serviceUrl:
+      defaultZone: http://localhost:9081/eureka/
+info:
+  app:
+    name: "accounts"
+    description: "Eureka client for Accounts Micro Service"
+    version: 1.0.0
+
+# Not Required because we use config server
+#build:
+#  version: 1.0
+#
+#accounts:
+#  message : "welcome to Microservice Application"
+#  contactDetails:
+#    name: Saikat Sen
+#    email: saikatsenproject@gmail.com
+#  phNo:
+#    - 1234567890
+#    - 1234567897
